@@ -1,0 +1,199 @@
+---
+title: 'Case Study: Hazardous Earth Objects'
+author: "Eric Chu"
+date: "2023-02-01"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+
+## Business Task
+Imagine a government own agency wants to figure out what to set their instruments or what devices they need to watch out for potentially hazardous astro objects closest to Earth. Explore data collected from NASA to find out what measurements and values that would deem an astro object dangerous.
+
+## Data Source
+This is data collected in the year of 2021 of all the recorded celestial objects that are closest to the planet Earth in this [link](https://www.kaggle.com/datasets/sameepvani/nasa-nearest-earth-objects). This is a public data set under the license of [CC0: Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+
+
+## Data Cleaning/Analysis
+
+Setup the packages and data:
+```{r}
+install.packages("tidyverse")
+install.packages("skimr")
+install.packages("janitor")
+install.packages("ggplot2")
+
+library(tidyverse)
+library(skimr)
+library(janitor)
+library(ggplot2)
+```
+
+
+Gather the Data:
+
+```{r}
+data1 <- read_csv("neo_v2.csv")
+```
+
+Check the gathered data:
+```{r}
+head(data1)
+colnames(data1)
+str(data1)
+```
+
+Begin the cleaning process to prepare the data for the analysis: 
+```{r}
+#No unnecessary renaming of the columns
+#Remove unnecessary columns: orbiting_body and sentry_object
+data1 <- data1 %>%
+  select(-c(id, orbiting_body, sentry_object))
+
+# Reassign the true and false values into hazard and safe for better analysis
+data1 <- data1 %>%
+  mutate(hazardous = case_when(hazardous == TRUE ~ 'hazard', hazardous == FALSE ~ 'safe'))
+
+
+
+#inspect the table once more
+nrow(data1)
+dim(data1)
+summary(data1)
+
+#drop any NULL values
+data1 <- drop_na(data1)
+
+#inspect the new table
+nrow(data1)
+dim(data1)
+summary(data1)
+```
+
+
+## Descriptive Data Analysis
+Going over what each column means in this dat set:
+
+ *est_diameter_min is the minimum diameter estimated in kilometers
+ 
+ *est_diameter_min is the Maximum Estimated Diameter in Kilometers
+ 
+ *relative_velocity is the velocity that is relative to Earth
+ 
+ *miss_distance is the distance in Kilometers missed
+ 
+ *absolute_magnitude is the  intrinsic luminosity which is the measure of brightness based on the distance of a star and the object.
+ 
+
+Descriptive analysis on min and mean of all the values and save the values in a separate data frame for further reference:
+
+```{r}
+#Descriptive analysis on est_diameter_min of all the values
+mean(data1$est_diameter_min) 
+median(data1$est_diameter_min) 
+max(data1$est_diameter_min) 
+min(data1$est_diameter_min) 
+
+# You can condense the four lines above to one line
+summary(data1$est_diameter_min)
+
+#Descriptive analysis on est_diameter_max of all the values
+mean(data1$est_diameter_max) 
+median(data1$est_diameter_max) 
+max(data1$est_diameter_max) 
+min(data1$est_diameter_max) 
+
+#Condense the four lines above to one line
+summary(data1$est_diameter_max)
+
+#Descriptive analysis on relative_velocity of all the values
+mean(data1$relative_velocity) 
+median(data1$relative_velocity) 
+max(data1$relative_velocity)
+min(data1$relative_velocity) 
+
+#Condense the four lines above to one line
+summary(data1$relative_velocity)
+
+#Descriptive analysis on miss_distance of all the values
+mean(data1$miss_distance) 
+median(data1$miss_distance) 
+max(data1$miss_distance)
+min(data1$miss_distance)
+
+#Condense the four lines above to one line
+summary(data1$miss_distance)
+
+#Descriptive analysis on miss_distance of all the values
+mean(data1$absolute_magnitude) 
+median(data1$absolute_magnitude) 
+max(data1$absolute_magnitude)
+min(data1$absolute_magnitude)
+
+#Condense the four lines above to one line
+summary(data1$absolute_magnitude)
+
+# Compare between the hazard and safe in ALL values
+aggregate(data1$est_diameter_min ~ data1$hazardous, FUN = mean)
+aggregate(data1$est_diameter_min ~ data1$hazardous, FUN = median)
+aggregate(data1$est_diameter_min ~ data1$hazardous, FUN = max)
+aggregate(data1$est_diameter_min ~ data1$hazardous, FUN = min)
+
+aggregate(data1$est_diameter_max ~ data1$hazardous, FUN = mean)
+aggregate(data1$est_diameter_max ~ data1$hazardous, FUN = median)
+aggregate(data1$est_diameter_max ~ data1$hazardous, FUN = max)
+aggregate(data1$est_diameter_max ~ data1$hazardous, FUN = min)
+
+aggregate(data1$relative_velocity ~ data1$hazardous, FUN = mean)
+aggregate(data1$relative_velocity ~ data1$hazardous, FUN = median)
+aggregate(data1$relative_velocity ~ data1$hazardous, FUN = max)
+aggregate(data1$relative_velocity ~ data1$hazardous, FUN = min)
+
+aggregate(data1$miss_distance ~ data1$hazardous, FUN = mean)
+aggregate(data1$miss_distance ~ data1$hazardous, FUN = median)
+aggregate(data1$miss_distance ~ data1$hazardous, FUN = max)
+aggregate(data1$miss_distance ~ data1$hazardous, FUN = min)
+
+aggregate(data1$absolute_magnitude ~ data1$hazardous, FUN = mean)
+aggregate(data1$absolute_magnitude ~ data1$hazardous, FUN = median)
+aggregate(data1$absolute_magnitude ~ data1$hazardous, FUN = max)
+aggregate(data1$absolute_magnitude ~ data1$hazardous, FUN = min)
+```
+
+The information we got from the aggregated descriptive data analysis: 
+
+ *Mean: From this, it is shown that the Hazard values are typically higher than the safe values except for the absolute magnitude. 
+ 
+ *Median: It is the same for the mean where the Hazard values are higher than the safe values except for the absolute magnitude.
+ 
+ *Max: This time it is shown that all the max values for the safe values are all higher than the hazard values.
+ 
+ *Min: From this, it is shown that the minimum values for the Hazard values are all higher than the safe values. 
+ 
+
+## Visualiztion
+Taking the aggregated data and the cleaned up data, tableau was used to visualize the data as a bar graph. 
+
+![Hazard Data Comparison](Sheet 1.png)
+
+This may seem overwhelming but that is the point of this visual. What is being shown here is how all over the place the data is when comparing them to each other. This is showing that there is no concrete combo of values that determines how an object is haphazardness or not. It also shows that there is no concrete correlation with each other.  
+
+
+## Data Conclusions
+ *Putting the data through the visual mediums of a bar graph have shown that it is difficult to find combination of data that indicates whether they are hazardous or not. It can be seen that some hazard and safe objects have value that are close in numbers, making it not clear on the difference between the hazard and safe objects.
+ 
+ *The aggregations of each value from the descriptive data analysis portion does give a better idea of what makes an object hazardous. From the average and median, it can be seen that the hazard objects are typically larger, showing that distance, diameter, and velocity are important to what makes a object hazardous. The average and median also shares similarity where the absolute magnitude of the hazard objects are typically smaller than the safe objects.    
+ 
+ *In the Maximum and Minimum portion of the data, it can be seen that the hazard values are mostly lower than the safe values. It is the reverse with he minimum values where the hazard value is higher than the safe value. Showing that the Hazard object values tend to have a smaller range of numbers than the safe objects.
+ 
+## Recommendations
+
+With the data collected, we can conclude that the observers of celestial objects should keep watch of the diameter, velocity, distance, and the absolute magnitude. The higher the values are in the diameter, velocity, and distance, the more hazardous the objects can be. This combined with checking the absolute magnitude where the lower values is more common with a hazardous object.
+
+Since the commonality of hazardous objects is the diameter, distance, and velocity, it is recommended to get devices that can not only take a clear image of the object but also be able to measure the distance of the object. Along with that, it should also take several pictures and record the time the pictures were taken since the velocity of the object can be more accurately calculated with these values.  
+
+## Additional Data/Expansion
+
+It would have been helpful fi there was a way to figure out the mass of the object. This would have given us another value that to look out for and see if that can have an effect in determining if an object can be hazardous. This could also give us more accurate values in figuring out the objects velocity and whether it is being affected by the other solar masses in our solar system. Though I can see how difficult that can be if there is no way to get a sample of the object.
