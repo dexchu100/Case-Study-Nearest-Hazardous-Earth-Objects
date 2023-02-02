@@ -1,5 +1,5 @@
 # Case-Study-Nearest-Hazardous-Earth-Objects
-# Nearest Earth Objects Data colleced from NASA data and what could categorize them as Hazardous?
+# Junior Data Analyst at a business intelligence consultant
 *Last modified: February 2, 2023*
 
 ### I. Case Study Scenario
