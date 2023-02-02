@@ -8,6 +8,11 @@ library(skimr)
 library(janitor)
 library(ggplot2)
 
+#Setting up where to get the data
+getwd()
+setwd("C:/Users/dexch/Documents/cyclist-data")
+getwd()
+
 #Gather the Data
 data1 <- read_csv("neo_v2.csv")
 
