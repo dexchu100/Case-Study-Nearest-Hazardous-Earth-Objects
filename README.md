@@ -32,15 +32,15 @@ Recall that our business task is to identify what are the factors and values tha
 
 Going over what each labels means in this data set:
 
- *est_diameter_min is the minimum diameter estimated in kilometers
+ * est_diameter_min is the minimum diameter estimated in kilometers
  
- *est_diameter_min is the Maximum Estimated Diameter in Kilometers
+ * est_diameter_min is the Maximum Estimated Diameter in Kilometers
  
- *relative_velocity is the velocity that is relative to Earth
+ * relative_velocity is the velocity that is relative to Earth
  
- *miss_distance is the distance in Kilometers missed
+ * miss_distance is the distance in Kilometers missed
  
- *absolute_magnitude is the  intrinsic luminosity which is the measure of brightness based on the distance of a star and the object.
+ * absolute_magnitude is the  intrinsic luminosity which is the measure of brightness based on the distance of a star and the object.
  
 
 Table 1: Aggregate Data
@@ -51,13 +51,13 @@ Table 1: Aggregate Data
 
 The information we got from the aggregated descriptive data analysis: 
 
- *Mean: From this, it is shown that the Hazard values are typically higher than the safe values except for the absolute magnitude. 
+ * Mean: From this, it is shown that the Hazard values are typically higher than the safe values except for the absolute magnitude. 
  
- *Median: It is the same for the mean where the Hazard values are higher than the safe values except for the absolute magnitude.
+ * Median: It is the same for the mean where the Hazard values are higher than the safe values except for the absolute magnitude.
  
- *Max: This time it is shown that all the max values for the safe values are all higher than the hazard values.
+ * Max: This time it is shown that all the max values for the safe values are all higher than the hazard values.
  
- *Min: From this, it is shown that the minimum values for the Hazard values are all higher than the safe values.
+ * Min: From this, it is shown that the minimum values for the Hazard values are all higher than the safe values.
 
 
 Taking the aggregated data and the cleaned up data, tableau was used to visualize the data as a bar graph: 
