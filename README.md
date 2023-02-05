@@ -81,4 +81,4 @@ Since the commonality of hazardous objects is the diameter, distance, and veloci
 
 ### VIII. Additional Data/Expansion
 
-It would have been helpful fi there was a way to figure out the mass of the object. This would have given us another value that to look out for and see if that can have an effect in determining if an object can be hazardous. This could also give us more accurate values in figuring out the objects velocity and whether it is being affected by the other solar masses in our solar system. Though I can see how difficult that can be if there is no way to get a sample of the object.
+It would have been helpful if there was a way to figure out the mass of the object. This would have given us another value that to look out for and see if that can have an effect in determining if an object can be hazardous. This could also give us more accurate values in figuring out the object's velocity and whether it is being affected by the other solar masses in our solar system. Though I can see how difficult that can be if there is no way to get a sample of the object.
