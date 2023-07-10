@@ -64,7 +64,7 @@ Taking the aggregated data and the cleaned up data, tableau was used to visualiz
 
 ![Hazard Data Comparison](https://github.com/dexchu100/Case-Study-Nearest-Hazardous-Earth-Objects/blob/main/Visualize%20Data/Bar%20Graph.png)
 
-This may seem overwhelming but that is the point of this visual. What is being shown here is how all over the place the data is when comparing them to each other. This is showing that there is no concrete combo of values that determines how an object is haphazardness or not. It also shows that there is no concrete correlation with each other. 
+This may seem overwhelming but that is the point of this visual. What is being shown here is how all over the place the data is when comparing them to each other. This is showing that there is no concrete combo of values that determines how an object is hazardous or not. It also shows that there is no concrete correlation with each other. 
 
 ### VI. Summary of Analysis
 
